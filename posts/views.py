@@ -11,6 +11,7 @@ def index(request):
 
 def detail(request):
     post = Post.objects.all()
+    print(post)
     return render(request,'post/post.html',{'posts':post})
 
 def add_post(request):
