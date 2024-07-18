@@ -43,7 +43,11 @@ def login(request):
         if form.is_valid():
             print(form.cleaned_data)
             cleaned_data = form.cleaned_data
-            review = Review(user_name=cleaned_data["user_name"],address=cleaned_data["address"],feedback=cleaned_data["feedback"],ratings=cleaned_data["ratings"])
+            review = Review(user_name=cleaned_data["user_name"],
+                            address=cleaned_data["address"],
+                            feedback=cleaned_data["feedback"] if cleaned_data.get("feedback") else "no",
+                            ratings=cleaned_data["ratings"]
+                            )
             review.save()
             return HttpResponse("Valid Form")
       
